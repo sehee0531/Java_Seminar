@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>파일 업로드</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="text/javascript">
+function submitContents(mode) {
+	if(mode=='send') {
+		var name = document.getElementById("txt_name").value;
+		var school = document.getElementById("txt_school").value;
+		var graduate = document.getElementById("txt_graduated").value;
+		document.getElementById("json_data").value="{\"name\":\"" +name+ "\",\"school\":\"" +school+ "\",\"graduate\":" +graduate+ "}";
+		document.form.action='http://192.168.0.8/four/Test';
+	}
+	document.form.submit();
+}
+</script>
+</head>
+<body>
+<div>
+    <form id="form" name="form" method="post" enctype="multipart/form-data">
+        <table style="width:1100px;" cellspacing=1 cellpadding=3 >
+		<input type="hidden" name="data" id="json_data">
+			<tr>
+				<th><label for="form_subject">첨부파일</label></th>
+				<td><input type="file" id="form_subject" name="file1" value="" title="파일"></td>
+			</tr>
+			<tr>
+				<th>이름</th>
+				<td><input type="text" name="name" value="이름을 입력하세요 ..." id="txt_name"></td>
+			</tr>
+			<tr>
+				<th>학교</th>
+				<td><input type="text" name="school" value="학교를 입력하세요 ..." id="txt_school"></td>
+			</tr>
+			<tr>
+				<th>졸업년도</th>
+				<td><input type="text" name="graduate" value="졸업년도를 입력하세요 ..." id="txt_graduated"></td>
+			</tr>
+			<tr>
+				<td colspan=2>
+            		<button style="width:1100px;" type="button" name="detectTexts" onclick="submitContents('send');">전송</button>
+            	</td>
+			</tr>
+		</table>
+    </form>
+</div>
+
+</body>
+</html>
